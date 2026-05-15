@@ -303,11 +303,11 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 ```
 * Build MongoDB image.
 ```
-docker build -t 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/mongodb:v1.1.1 .
+docker build -t 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/mongodb:v1.2.2 .
 ```
 * Push image
 ```
-docker push 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/mongodb:v1.1.1
+docker push 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/mongodb:v1.2.2
 ```
 * Now install using Helm. move to helm directory
 ```
@@ -370,11 +370,11 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 ```
 * Build rabbitmq image.
 ```
-docker build -t 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/rabbitmq:v1.1.2 .
+docker build -t 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/rabbitmq:v1.2.3 .
 ```
 * Push image
 ```
-docker push 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/rabbitmq:v1.1.2
+docker push 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/rabbitmq:v1.2.3
 ```
 * Now install using Helm. move to helm directory
 ```
@@ -385,6 +385,91 @@ cd helm
 helm upgrade --install rabbitmq . -n roboshop
 ```
 
+
+# Dispatch
+
+* We use bastion host as Docker server and EKS client.
+
+```
+aws configure
+```
+
+```
+aws eks update-kubeconfig --region us-east-1 --name roboshop-dev
+```
+```
+kubectl create namespace roboshop
+```
+```
+git clone https://github.com/rajalingarao/13.22.roboshop-dispatch.git
+```
+```
+cd 13.22.roboshop-dispatch
+```
+
+* Login to ECR
+```
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 805778285734.dkr.ecr.us-east-1.amazonaws.com
+```
+* Build Dispatch image.
+```
+docker build -t 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/dispatch:v1.2.4 .
+```
+* Push image
+```
+docker push 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/dispatch:v1.2.4
+```
+* Now install using Helm. move to helm directory
+```
+cd helm
+```
+
+```
+helm upgrade --install dispatch . -n roboshop
+```
+
+
+# Debug
+
+We use bastion host as Docker server and EKS client.
+
+```
+aws configure
+```
+
+```
+aws eks update-kubeconfig --region us-east-1 --name roboshop-dev
+```
+```
+kubectl create namespace roboshop
+```
+```
+git clone https://github.com/rajalingarao/13.23.roboshop-debug.git
+```
+```
+cd 13.23.roboshop-debug
+```
+
+* Login to ECR
+```
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 805778285734.dkr.ecr.us-east-1.amazonaws.com
+```
+* Build Debug image.
+```
+docker build -t 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/debug:v1.2.5 .
+```
+* Push image
+```
+docker push 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/debug:v1.2.5
+```
+* Now install using Helm. move to helm directory
+```
+cd helm
+```
+
+```
+helm upgrade --install debug . -n roboshop
+```
 
 
 All backend CI components created as multi-branch pipeline in jenkins. and all backend CD components created as pipeline in Jenkins and frontend, dispatch, debug.

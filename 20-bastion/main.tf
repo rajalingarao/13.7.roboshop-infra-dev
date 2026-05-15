@@ -5,8 +5,8 @@ module "bastion" {
   instance_type          = "t3.micro"
   # vpc_security_group_ids = [local.bastion_sg_id]
   # subnet_id              = local.public_subnet_id
-  vpc_security_group_ids = ["sg-09c7c70bd56f0d58b"]
-  subnet_id              = "subnet-0a3b249c1f344ef36"
+  vpc_security_group_ids = ["sg-088bbd993cbc52b59"]
+  subnet_id              = "subnet-0ea9a2005fdcc6695"
 
   tags = merge(
     var.common_tags,

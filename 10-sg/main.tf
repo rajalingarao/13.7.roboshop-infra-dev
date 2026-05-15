@@ -117,7 +117,7 @@ resource "aws_security_group_rule" "mysql_bastion" {
   to_port           = 3306
   protocol          = "tcp"
   source_security_group_id       = module.bastion_sg.id
-  security_group_id = module.mysql_sg.id
+  security_group_id = module.db_sg.id
 }
 
 resource "aws_security_group_rule" "bastion_public" {
@@ -135,5 +135,5 @@ resource "aws_security_group_rule" "mysql_node" {
   to_port           = 3306
   protocol          = "tcp"
   source_security_group_id = module.node_sg.id
-  security_group_id = module.mysql_sg.id
+  security_group_id = module.db_sg.id
 }

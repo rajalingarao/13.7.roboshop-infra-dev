@@ -14,7 +14,7 @@ variable "common_tags" {
     }
 }
 
-variable "mysql_sg_tags" {
+variable "db_sg_tags" {
     default = {
         Component = "mysql"
     }

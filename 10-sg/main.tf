@@ -1,11 +1,11 @@
-module "mysql_sg" {
+module "db_sg" {
     source = "git::https://github.com/rajalingarao/13.4.terraform-aws-security-group-roboshop.git?ref=main"
     project_name = var.project_name
     environment = var.environment
-    sg_name = "mysql"
+    sg_name = "db"
     vpc_id = local.vpc_id
     common_tags = var.common_tags
-    sg_tags = var.mysql_sg_tags
+    sg_tags = var.db_sg_tags
 }
 
 module "bastion_sg" {

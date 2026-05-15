@@ -1,8 +1,8 @@
-resource "aws_ssm_parameter" "mysql_sg_id" {
+resource "aws_ssm_parameter" "db_sg_id" {
   # /expense/dev/mysql_sg_id
-  name  = "/${var.project_name}/${var.environment}/mysql_sg_id"
+  name  = "/${var.project_name}/${var.environment}/db_sg_id"
   type  = "String"
-  value = module.mysql_sg.id
+  value = module.db_sg.id
 }
 
 resource "aws_ssm_parameter" "eks_control_plane_sg_id" {

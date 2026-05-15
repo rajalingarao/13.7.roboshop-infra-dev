@@ -51,7 +51,7 @@ for i in  00-vpc/ 10-sg/ 20-bastion/ 30-rds/ 40-eks/ 50-acm/ 60-alb/ 70-ecr/ 80-
 ```
 
 ```
-for i in  80-cdn/ 70-ecr/ 60-alb/ 50-acm/ 40-eks/ 30-rds/ 20-bastion/ 10-sg/ 00-vpc/  ; do cd $i; terraform destroy auto-approve; cd .. ; done 
+for i in  80-cdn/ 70-ecr/ 60-alb/ 50-acm/ 40-eks/ 30-rds/ 20-bastion/ 10-sg/ 00-vpc/  ; do cd $i; terraform destroy -auto-approve; cd .. ; done 
 ```
 
 # Set Jenkins master and agent setup:

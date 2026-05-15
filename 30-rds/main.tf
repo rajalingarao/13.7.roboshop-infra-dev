@@ -20,7 +20,7 @@ module "db" {
 
   # DB subnet group
   create_db_subnet_group = false
-  db_subnet_group_name = data.aws_ssm_parameter.db_subnet_group_name.value
+  db_subnet_group_name = data.aws_ssm_parameter.database_subnet_group_name.value
 
   # DB parameter group
   family = "mysql8.0"

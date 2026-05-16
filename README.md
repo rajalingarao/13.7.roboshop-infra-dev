@@ -273,7 +273,7 @@ kubectl get pods -n kube-system
 kubectl get nodes
 ```
 ```
-kubens expense
+kubens roboshop
 ```
 ```
 kubectl get pods
@@ -306,11 +306,11 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 ```
 * Build MongoDB image.
 ```
-docker build -t 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/mongodb:v1.2.2 .
+docker build -t 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/mongodb:v1.1.1 .
 ```
 * Push image
 ```
-docker push 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/mongodb:v1.2.2
+docker push 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/mongodb:v1.1.1
 ```
 * Now install using Helm. move to helm directory
 ```
@@ -373,11 +373,11 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 ```
 * Build rabbitmq image.
 ```
-docker build -t 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/rabbitmq:v1.2.3 .
+docker build -t 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/rabbitmq:v1.1.2 .
 ```
 * Push image
 ```
-docker push 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/rabbitmq:v1.2.3
+docker push 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/rabbitmq:v1.1.2
 ```
 * Now install using Helm. move to helm directory
 ```
@@ -416,11 +416,11 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 ```
 * Build Dispatch image.
 ```
-docker build -t 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/dispatch:v1.2.4 .
+docker build -t 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/dispatch:v1.1.3 .
 ```
 * Push image
 ```
-docker push 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/dispatch:v1.2.4
+docker push 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/dispatch:v1.1.3
 ```
 * Now install using Helm. move to helm directory
 ```
@@ -459,11 +459,11 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 ```
 * Build Debug image.
 ```
-docker build -t 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/debug:v1.2.5 .
+docker build -t 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/debug:v1.1.4 .
 ```
 * Push image
 ```
-docker push 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/debug:v1.2.5
+docker push 805778285734.dkr.ecr.us-east-1.amazonaws.com/roboshop/dev/debug:v1.1.4
 ```
 * Now install using Helm. move to helm directory
 ```

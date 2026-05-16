@@ -84,7 +84,7 @@ resource "aws_security_group_rule" "eks_control_plane_node" {
   security_group_id = module.eks_control_plane_sg.id
 }
 
-resource "aws_security_group_rule" "eks_control_plane_bastion" {
+resource "aws_security_group_rule" "eks_control_plane_bastion_443" {
   type              = "ingress"
   from_port         = 443
   to_port           = 443
@@ -92,6 +92,16 @@ resource "aws_security_group_rule" "eks_control_plane_bastion" {
   source_security_group_id = module.bastion_sg.id
   security_group_id = module.eks_control_plane_sg.id
 }
+resource "aws_security_group_rule" "eks_control_plane_bastion_22" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  source_security_group_id = module.bastion_sg.id
+  security_group_id = module.eks_control_plane_sg.id
+}
+
+
 
 resource "aws_security_group_rule" "node_vpc" {
   type              = "ingress"
@@ -111,7 +121,7 @@ resource "aws_security_group_rule" "node_bastion" {
   security_group_id = module.node_sg.id
 }
 
-resource "aws_security_group_rule" "mysql_bastion" {
+resource "aws_security_group_rule" "db_bastion" {
   type              = "ingress"
   from_port         = 3306
   to_port           = 3306
@@ -129,11 +139,22 @@ resource "aws_security_group_rule" "bastion_public" {
   security_group_id = module.bastion_sg.id
 }
 
-resource "aws_security_group_rule" "mysql_node" {
+resource "aws_security_group_rule" "db_node" {
   type              = "ingress"
   from_port         = 3306
   to_port           = 3306
   protocol          = "tcp"
   source_security_group_id = module.node_sg.id
   security_group_id = module.db_sg.id
+}
+
+#To work with this peering connection should be open default vpc and expense-vpc
+#EKS Cluster accepting all traffic from jenkins agent
+resource "aws_security_group_rule" "eks_control_plane_jenkins-agent" { #default_vpc
+    type = "ingress"
+    from_port = 0
+    to_port =  65535
+    protocol = "-1" # All traffic
+    cidr_blocks = ["172.31.0.0/16"]
+    security_group_id = module.eks_control_plane_sg.id  
 }

@@ -16,7 +16,7 @@ variable "common_tags" {
 
 variable "db_sg_tags" {
     default = {
-        Component = "mysql"
+        Component = "db"
     }
 }
 

@@ -16,7 +16,7 @@ variable "common_tags" {
 
 variable "rds_tags" {
     default = {
-        Component = "mysql"
+        Component = "db"
     }
 }
 

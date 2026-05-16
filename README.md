@@ -93,6 +93,9 @@ Restart Jenkins once plugins are installed
 
 * Note: Jenkins Agent is used to run application and all services. Bastion server is used to troubleshoot or test entire application or database.
 
+```
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
 
 ### Configure Agent
 ```
@@ -183,7 +186,7 @@ We are using Bastion as our EKS client, so it will have
 * Make sure MySQL instance allows port no 3306 from bastion
 
 ```
-mysql -h roboshop-dev.czn6yzxlcsiv.us-east-1.rds.amazonaws.com -u root -pRoboShop1
+mysql -h roboshop-dev.c0d4soae2u8h.us-east-1.rds.amazonaws.com -u root -pRoboShop1
 ```
 * Clone shipping component into bastion
 ```
@@ -191,13 +194,13 @@ git clone https://github.com/rajalingarao/13.17.roboshop-shipping-CI.git
 ```
 * logout from mysql and Load the data into mysql on ec2-user.
 ```
-mysql -h roboshop-dev.czn6yzxlcsiv.us-east-1.rds.amazonaws.com -u root -pRoboShop1 < 13.17.roboshop-shipping-CI/db/schema.sql
+mysql -h roboshop-dev.c0d4soae2u8h.us-east-1.rds.amazonaws.com -u root -pRoboShop1 < 13.17.roboshop-shipping-CI/db/schema.sql
 ```
 ```
-mysql -h roboshop-dev.czn6yzxlcsiv.us-east-1.rds.amazonaws.com -u root -pRoboShop1 < 13.17.roboshop-shipping-CI/db/app-user.sql
+mysql -h roboshop-dev.c0d4soae2u8h.us-east-1.rds.amazonaws.com -u root -pRoboShop1 < 13.17.roboshop-shipping-CI/db/app-user.sql
 ```
 ```
-mysql -h roboshop-dev.czn6yzxlcsiv.us-east-1.rds.amazonaws.com -u root -pRoboShop1 < 13.17.roboshop-shipping-CI/db/master-data.sql
+mysql -h roboshop-dev.c0d4soae2u8h.us-east-1.rds.amazonaws.com -u root -pRoboShop1 < 13.17.roboshop-shipping-CI/db/master-data.sql
 ```
 
 ## Target group binding

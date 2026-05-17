@@ -546,9 +546,7 @@ git add .;git commit -m "k8s backend shared library"; git push -u origin catalog
 git checkout main
 ```
 
-```
-git remote set-url origin https://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@github.com/rajalingarao/13.11.roboshop-catalogue-CI
-```
+
 
 # Creating Multi branches in cart repositories. main points to Prod, we run it non-prod on 'feature branches'
 ```
@@ -569,9 +567,7 @@ git add .;git commit -m "k8s backend shared library"; git push -u origin cart-fe
 ```
 git checkout main
 ```
-```
-git remote set-url origin https://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@github.com/rajalingarao/13.15.roboshop-cart-CI
-```
+
 # Creating Multi branches in user repositories. main points to Prod, we run it non-prod on 'feature branches'
 ```
 git clone https://github.com/rajalingarao/13.13.roboshop-user-CI.git
@@ -591,9 +587,7 @@ git add .;git commit -m "k8s backend shared library"; git push -u origin user-fe
 ```
 git checkout main
 ```
-```
-git remote set-url origin https://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@github.com/rajalingarao/13.15.roboshop-user-CI
-```
+
 # Creating Multi branches in shipping repositories. main points to Prod, we run it non-prod on 'feature branches'
 ```
 git clone https://github.com/rajalingarao/13.17.roboshop-shipping-CI.git
@@ -614,9 +608,7 @@ git add .;git commit -m "k8s backend shared library"; git push -u origin shippin
 git checkout main
 ```
 
-```
-git remote set-url origin https://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@github.com/rajalingarao/13.17.roboshop-shipping-CI
-```
+
 # Creating Multi branches in shipping repositories. main points to Prod, we run it non-prod on 'feature branches'
 ```
 git clone https://github.com/rajalingarao/13.19.roboshop-payment-CI.git
@@ -636,9 +628,7 @@ git add .;git commit -m "k8s backend shared library"; git push -u origin payment
 ```
 git checkout main
 ```
-```
-git remote set-url origin https://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@github.com/rajalingarao/13.19.roboshop-payment-CI
-```
+
 # Note: Copy the latest target group binding in AWS console and paste into tgb.yaml in frontend.
 
 # Creating pipeline branch in frontend. main points to Prod, we run it non-prod on 'feature branches'.
@@ -661,10 +651,6 @@ git add .;git commit -m "k8s backend shared library"; git push -u origin feature
 ```
 git checkout main
 ```
-```
-git remote set-url origin https://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@github.com/rajalingarao/13.21.roboshop-frontend
-```
-
 
 ```
 kubens roboshop

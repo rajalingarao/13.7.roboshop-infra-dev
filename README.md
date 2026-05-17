@@ -545,9 +545,6 @@ git add .;git commit -m "k8s backend shared library"; git push -u origin catalog
 ```
 git checkout main
 ```
-
-
-
 # Creating Multi branches in cart repositories. main points to Prod, we run it non-prod on 'feature branches'
 ```
 git clone https://github.com/rajalingarao/13.15.roboshop-cart-CI.git
@@ -567,7 +564,6 @@ git add .;git commit -m "k8s backend shared library"; git push -u origin cart-fe
 ```
 git checkout main
 ```
-
 # Creating Multi branches in user repositories. main points to Prod, we run it non-prod on 'feature branches'
 ```
 git clone https://github.com/rajalingarao/13.13.roboshop-user-CI.git
@@ -587,7 +583,6 @@ git add .;git commit -m "k8s backend shared library"; git push -u origin user-fe
 ```
 git checkout main
 ```
-
 # Creating Multi branches in shipping repositories. main points to Prod, we run it non-prod on 'feature branches'
 ```
 git clone https://github.com/rajalingarao/13.17.roboshop-shipping-CI.git
@@ -607,8 +602,6 @@ git add .;git commit -m "k8s backend shared library"; git push -u origin shippin
 ```
 git checkout main
 ```
-
-
 # Creating Multi branches in shipping repositories. main points to Prod, we run it non-prod on 'feature branches'
 ```
 git clone https://github.com/rajalingarao/13.19.roboshop-payment-CI.git
@@ -628,7 +621,6 @@ git add .;git commit -m "k8s backend shared library"; git push -u origin payment
 ```
 git checkout main
 ```
-
 # Note: Copy the latest target group binding in AWS console and paste into tgb.yaml in frontend.
 
 # Creating pipeline branch in frontend. main points to Prod, we run it non-prod on 'feature branches'.
@@ -663,8 +655,6 @@ kubectl get nodes
 ```
 kubectl get pods -n roboshop
 ```
-
-
 # After running the entire applications, if running, then trouble shooting the Mysql Database:
 
 * Connect to RDS using bastion host.
@@ -678,9 +668,6 @@ USE cities;
 ```
 select * from cities;
 ```
-
-
-
 
 * Resource delete steps
     First Delete all applications frontend, backend, db.

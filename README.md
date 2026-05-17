@@ -1,228 +1,133 @@
-
-
-\# How to remove unnecessary files:
-
+# How to remove unnecessary files:
 ```
-
 for d in 00-vpc/ 10-sg/ 20-bastion/ 30-rds/ 40-eks/ 50-acm/ 60-alb/ 70-ecr/ 80-cdn/; do
+  echo "Removing from $d:"
+  echo "  $d/.terraform"
+  echo "  $d/.terraform.lock.hcl"
 
-&#x20; echo "Removing from $d:"
+  rm -rf "$d/.terraform" "$d/.terraform.lock.hcl"
 
-&#x20; echo "  $d/.terraform"
-
-&#x20; echo "  $d/.terraform.lock.hcl"
-
-&#x20; rm -rf "$d/.terraform" "$d/.terraform.lock.hcl"
-
-&#x20; echo "deleted files from $d"
-
+  echo "Deleted files from $d"
 done
-
 ```
 
+# Project consists of below components:
+* 13.5.jenkins-shared-library-roboshop
+* 13.6.roboshop-jenkins-cicd-tools
+* 13.7.roboshop-infra-dev   
+* MySQL is installed through 30-rds
+* 13.9.roboshop-redis
+* 13.8.roboshop-mongodb
+* 13.9.roboshop-redis
+
+* 13.11.roboshop-catalogue-CI
+* 13.12.roboshop-catalogue-CD
+* 13.13.roboshop-user-CI
+* 13.14.roboshop-user-CD
+* 13.15.roboshop-cart-CI
+* 13.16.roboshop-cart-CD
+* 13.17.roboshop-shipping-CI
+* 13.18.roboshop-shipping-CD
+* 13.19.roboshop-payment-CI
+* 13.20.roboshop-payment-CD
 
 
-\# Project consists of below components:
-
-\* 13.5.jenkins-shared-library-roboshop
-
-\* 13.6.roboshop-jenkins-cicd-tools
-
-\* 13.7.roboshop-infra-dev   
-
-\* MySQL is installed through 30-rds
-
-\* 13.9.roboshop-redis
-
-\* 13.8.roboshop-mongodb
-
-\* 13.9.roboshop-redis
+* 13.21.roboshop-frontend
+* 13.22.roboshop-dispatch
+* 13.23.roboshop-debug
 
 
-
-\* 13.11.roboshop-catalogue-CI
-
-\* 13.12.roboshop-catalogue-CD
-
-\* 13.13.roboshop-user-CI
-
-\* 13.14.roboshop-user-CD
-
-\* 13.15.roboshop-cart-CI
-
-\* 13.16.roboshop-cart-CD
-
-\* 13.17.roboshop-shipping-CI
-
-\* 13.18.roboshop-shipping-CD
-
-\* 13.19.roboshop-payment-CI
-
-\* 13.20.roboshop-payment-CD
-
-
-
-\* 13.21.roboshop-frontend
-
-
-
-\* 13.22.roboshop-dispatch
-
-\* 13.23.roboshop-debug
-
-
-
-
-
-
-
-\# Infrastructure creation and deletion
-
+# Infrastructure creation and deletion
 ```
-
 for i in 00-vpc/ 10-sg/ 20-bastion/ 30-rds/ 40-eks/ 50-acm/ 60-alb/ 70-ecr/ 80-cdn/ ; do cd $i; terraform init -reconfigure; cd .. ; done 
-
 ```
 
-
-
 ```
-
 for i in  00-vpc/ 10-sg/ 20-bastion/ 30-rds/ 40-eks/ 50-acm/ 60-alb/ 70-ecr/ 80-cdn/  ; do cd $i; terraform plan; cd .. ; done 
-
 ```
 
-
-
 ```
-
 for i in  00-vpc/ 10-sg/ 20-bastion/ 30-rds/ 40-eks/ 50-acm/ 60-alb/ 70-ecr/ 80-cdn/  ; do cd $i; terraform apply -auto-approve; cd .. ; done 
-
 ```
 
-
-
 ```
-
 for i in  80-cdn/ 70-ecr/ 60-alb/ 50-acm/ 40-eks/ 30-rds/ 20-bastion/ 10-sg/ 00-vpc/  ; do cd $i; terraform destroy -auto-approve; cd .. ; done 
-
 ```
 
-
-
-\# Set Jenkins master and agent setup:
+# Set Jenkins master and agent setup:
 
 ```
-
 git clone https://github.com/rajalingarao/13.6.roboshop-jenkins-cicd-tools.git
 
 ```
 
 ```
-
 cd 13.6.roboshop-jenkins-cicd-tools
-
 ```
 
-
-
 ```
-
 terraform init -reconfigure
-
 ```
 
 ```
-
 terraform plan
-
 ```
 
 ```
-
 terraform apply -auto-approve
-
 ```
 
 ```
-
 terraform destroy -auto-approve
-
 ```
 
 
 
 
 
-\# Jenkins
-
-
-
+# Jenkins
 Install below plugins when you started Jenkins.
 
-
-
 Plugins:
+* Pipeline stage view
+* Pipeline Utility Steps
+* Rebuild
+* Ansi Color
+* Sonarqube Scanner
 
-\* Pipeline stage view
-
-\* Pipeline Utility Steps
-
-\* Rebuild
-
-\* Ansi Color
-
-\* Sonarqube Scanner
-
-\* AWS Credentials
-
+* AWS Credentials
+```
+withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-creds']]) {
+    // your AWS commands here
+}
 ```
 
-&#x20;withCredentials(\[\[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-creds']]) {    }
+* AWS Steps --> This is not required using old plugin,
 
 ```
-
-
-
-\* AWS Steps --> This is not required using old plugin,
-
+withAWS(region: 'us-east-1', credentials: "aws-creds-${environment}") {
+    // your AWS CLI / terraform / kubectl steps
+}
 ```
-
-&#x20; withAWS(region: 'us-east-1', credentials: "aws-creds-${environment}") {   }
-
-```
-
-
 
 Restart Jenkins once plugins are installed
-
-
-
-\* Note: Jenkins Agent is used to run application and all services. Bastion server is used to troubleshoot or test entire application or database.
-
-
+* Note: Jenkins Agent is used to run application and all services. Bastion server is used to troubleshoot or test entire application or database.
 
 ```
-
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 ```
 
 ```
-
 sudo yum install java-21-openjdk -y
-
 java --version
-
 sudo alternatives --config java   --> Select java 21 version
-
 java --version
 
 ```
 
 
-
-\### Configure Agent
+### Configure Agent
 
 ```
 

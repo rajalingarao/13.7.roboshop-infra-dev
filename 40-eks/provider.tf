@@ -8,7 +8,7 @@ terraform {
 
   backend "s3" {
     bucket = "roboshop13-remote-state"
-    key    = "roboshop-eks"
+    key    = "roboshop-eks-1"
     region = "us-east-1"
     #dynamodb_table = "roboshop13-locking"
     use_lockfile = true

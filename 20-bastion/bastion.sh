@@ -68,7 +68,7 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 VALIDATE $? "helm installation"
 
-dnf install mysql -y
+sudo dnf install mysql -y
 VALIDATE $? "MySQL installation"
 
 #kubens

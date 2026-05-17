@@ -84,10 +84,11 @@ Plugins:
 * Pipeline stage view
 * Pipeline Utility Steps
 * AWS Credentials
-* AWS Steps
 * Rebuild
 * Ansi Color
 * Sonarqube Scanner
+
+* AWS Steps --> This is not required using old plugin,
 
 Restart Jenkins once plugins are installed
 
@@ -95,6 +96,12 @@ Restart Jenkins once plugins are installed
 
 ```
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
+```
+sudo yum install java-21-openjdk -y
+java --version
+sudo alternatives --config java
+java --version
 ```
 
 ### Configure Agent
@@ -111,7 +118,7 @@ aws s3 ls
 ### Configure Jenkins Shared Libraries in Jenkins master:
 * Go to Manage Jenkins -> System
 * Find Global Trusted Pipeline Libraries section
-* Name as roboshop-jenkins-shared-library, default version main and load implicitly
+* Name as 'roboshop-jenkins-shared-library' , default version main and load implicitly
 * Location is https://github.com/rajalingarao/13.5.jenkins-shared-library-roboshop.git
 
 Now Jenkins is ready to use.
@@ -280,7 +287,7 @@ kubectl get pods
 ```
 
 
-Project components creation:
+Project components creation on Bastion Server:
 
 # MySQL server created by 30-rds.
 
@@ -528,11 +535,19 @@ cd 13.11.roboshop-catalogue-CI
 
 * Create and Switch to the New Branch (recommended):
 ```
-backend-rep$ git checkout -b catalogue-feature-11
+git checkout -b catalogue-feature-11
 ```
 * Push changes into new branch catalogue-feature-11
 ```
-backend-rep$ git add .;git commit -m "k8s backend shared library"; git push -u origin catalogue-feature-11;
+git add .;git commit -m "k8s backend shared library"; git push -u origin catalogue-feature-11;
+```
+
+```
+git checkout main
+```
+
+```
+git remote set-url origin https://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@github.com/rajalingarao/13.11.roboshop-catalogue-CI
 ```
 
 # Creating Multi branches in cart repositories. main points to Prod, we run it non-prod on 'feature branches'
@@ -545,14 +560,18 @@ cd 13.15.roboshop-cart-CI
 
 * Create and Switch to the New Branch (recommended):
 ```
-backend-rep$ git checkout -b cart-feature-21
+git checkout -b cart-feature-21
 ```
 * Push changes into new branch cart-feature-21
 ```
-backend-rep$ git add .;git commit -m "k8s backend shared library"; git push -u origin cart-feature-21;
+git add .;git commit -m "k8s backend shared library"; git push -u origin cart-feature-21;
 ```
-
-
+```
+git checkout main
+```
+```
+git remote set-url origin https://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@github.com/rajalingarao/13.15.roboshop-cart-CI
+```
 # Creating Multi branches in user repositories. main points to Prod, we run it non-prod on 'feature branches'
 ```
 git clone https://github.com/rajalingarao/13.13.roboshop-user-CI.git
@@ -563,14 +582,18 @@ cd 13.13.roboshop-user-CI
 
 * Create and Switch to the New Branch (recommended):
 ```
-backend-rep$ git checkout -b user-feature-31
+git checkout -b user-feature-31
 ```
 * Push changes into new branch user-feature-31
 ```
-backend-rep$ git add .;git commit -m "k8s backend shared library"; git push -u origin user-feature-31;
+git add .;git commit -m "k8s backend shared library"; git push -u origin user-feature-31;
 ```
-
-
+```
+git checkout main
+```
+```
+git remote set-url origin https://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@github.com/rajalingarao/13.15.roboshop-user-CI
+```
 # Creating Multi branches in shipping repositories. main points to Prod, we run it non-prod on 'feature branches'
 ```
 git clone https://github.com/rajalingarao/13.17.roboshop-shipping-CI.git
@@ -581,14 +604,19 @@ cd 13.17.roboshop-shipping-CI
 
 * Create and Switch to the New Branch (recommended):
 ```
-backend-rep$ git checkout -b shipping-feature-41
+git checkout -b shipping-feature-41
 ```
 * Push changes into new branch shipping-feature-41
 ```
-backend-rep$ git add .;git commit -m "k8s backend shared library"; git push -u origin shipping-feature-41;
+git add .;git commit -m "k8s backend shared library"; git push -u origin shipping-feature-41;
+```
+```
+git checkout main
 ```
 
-
+```
+git remote set-url origin https://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@github.com/rajalingarao/13.17.roboshop-shipping-CI
+```
 # Creating Multi branches in shipping repositories. main points to Prod, we run it non-prod on 'feature branches'
 ```
 git clone https://github.com/rajalingarao/13.19.roboshop-payment-CI.git
@@ -599,32 +627,44 @@ cd 13.19.roboshop-payment-CI
 
 * Create and Switch to the New Branch (recommended):
 ```
-backend-rep$ git checkout -b payment-feature-51
+git checkout -b payment-feature-51
 ```
 * Push changes into new branch payment-feature-51
 ```
-backend-rep$ git add .;git commit -m "k8s backend shared library"; git push -u origin payment-feature-51;
+git add .;git commit -m "k8s backend shared library"; git push -u origin payment-feature-51;
 ```
-
+```
+git checkout main
+```
+```
+git remote set-url origin https://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@github.com/rajalingarao/13.19.roboshop-payment-CI
+```
 # Note: Copy the latest target group binding in AWS console and paste into tgb.yaml in frontend.
 
 # Creating pipeline branch in frontend. main points to Prod, we run it non-prod on 'feature branches'.
 
 ```
-git clone https://github.com/rajalingarao/https://github.com/rajalingarao/9.28.frontend-shared-library-multi-branch-pipeline.git
+git clone https://github.com/rajalingarao/13.21.roboshop-frontend.git
 ```
 ```
-cd 9.28.frontend-shared-library-multi-branch-pipeline
+cd 13.21.roboshop-frontend
 ```
 
 * Create and Switch to the New Branch (recommended):
 ```
-frontend-rep$ git checkout -b feature-121
+git checkout -b feature-121
 ```
 * Push changes into new branch feature-121
 ```
-frontend-rep$ git add .;git commit -m "k8s backend shared library"; git push -u origin feature-121;
+git add .;git commit -m "k8s backend shared library"; git push -u origin feature-121;
 ```
+```
+git checkout main
+```
+```
+git remote set-url origin https://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@github.com/rajalingarao/13.21.roboshop-frontend
+```
+
 
 ```
 kubens roboshop

@@ -675,7 +675,7 @@ select * from cities;
     Third Delete infra and its denpendencies.
 
 
-
+ #***************************************************
 * Important Points:
 * Note:  Before deploy is the process of calling another pipeline cd-deploy. Now deploy is the creating manifest files.
 

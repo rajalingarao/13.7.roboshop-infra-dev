@@ -131,7 +131,7 @@ aws s3 ls
 * Find Global Trusted Pipeline Libraries section
 * Name as 'roboshop-jenkins-shared-library' , default version main and load implicitly
 * Location is https://github.com/rajalingarao/13.5.jenkins-shared-library-roboshop.git
-Now Jenkins is ready to use.
+* Now Jenkins is ready to use.
 
 # Infrastructure
 
@@ -181,7 +181,7 @@ kubectl create namespace roboshop
 ```
 # Roboshop DEV Infrastructure
 
-!\[alt text](roboshop.svg)
+![alt text](roboshop.svg)
 
 * Make sure infra is created. 
 * Every resource should have dev in its name, so that it will not overlap with prod resources.

@@ -134,9 +134,6 @@ aws s3 ls
 * Now Jenkins is ready to use.
 
 # Infrastructure
-
-![alt text](eks-infra.svg)
-
 Creating above infrastructure involves lot of steps, as maintained sequence we need to create
 * VPC
 * All security groups and rules
@@ -300,7 +297,6 @@ kubens roboshop
 
 ```
 kubectl get pods
-
 ```
 
 Project components creation on Bastion Server:
@@ -349,7 +345,6 @@ helm upgrade --install mongodb . -n roboshop
 ```
 
 # Redis
-
 ```
 aws configure
 ```

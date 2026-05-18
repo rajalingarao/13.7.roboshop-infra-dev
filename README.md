@@ -124,8 +124,6 @@ aws configure
 aws s3 ls
 ```
 
-
-
 ### Configure Jenkins Shared Libraries in Jenkins master:
 * Go to Manage Jenkins -> System
 * Find Global Trusted Pipeline Libraries section
@@ -205,21 +203,15 @@ git clone https://github.com/rajalingarao/13.17.roboshop-shipping-CI.git
 ```
 
 * logout from mysql and Load the data into mysql on ec2-user.
-
 ```
 mysql -h roboshop-dev.c0d4soae2u8h.us-east-1.rds.amazonaws.com -u root -pRoboShop1 < 13.17.roboshop-shipping-CI/db/schema.sql
 ```
-
 ```
 mysql -h roboshop-dev.c0d4soae2u8h.us-east-1.rds.amazonaws.com -u root -pRoboShop1 < 13.17.roboshop-shipping-CI/db/app-user.sql
 ```
-
 ```
 mysql -h roboshop-dev.c0d4soae2u8h.us-east-1.rds.amazonaws.com -u root -pRoboShop1 < 13.17.roboshop-shipping-CI/db/master-data.sql
 ```
-
-
-
 ## Target group binding
 * If we are running frontend using normal user it can't bind the port 80. non root privelege user running container are not able to open system ports which are under 1024.
 * So we have to use port no 8080 for frontend. Make sure
@@ -631,6 +623,15 @@ git add .;git commit -m "k8s backend shared library"; git push -u origin user-fe
 ```
 git checkout main
 ```
+
+* Safe delete (recommended)
+```
+git branch -d user-feature-31
+```
+* Force delete (if not merged)
+```
+git branch -D user-feature-31
+```
 # Creating Multi branches in shipping repositories. main points to Prod, we run it non-prod on 'feature branches'
 
 ```
@@ -654,6 +655,14 @@ git add .;git commit -m "k8s backend shared library"; git push -u origin shippin
 git checkout main
 ```
 
+* Safe delete (recommended)
+```
+git branch -d shipping-feature-41
+```
+* Force delete (if not merged)
+```
+git branch -D shipping-feature-41
+```
 # Creating Multi branches in shipping repositories. main points to Prod, we run it non-prod on 'feature branches'
 ```
 git clone https://github.com/rajalingarao/13.19.roboshop-payment-CI.git
@@ -675,6 +684,15 @@ git add .;git commit -m "k8s backend shared library"; git push -u origin payment
 ```
 git checkout main
 ```
+
+* Safe delete (recommended)
+```
+git branch -d payment-feature-51
+```
+* Force delete (if not merged)
+```
+git branch -D payment-feature-51
+```
 # Note: Copy the latest target group binding in AWS console and paste into tgb.yaml in frontend.
 
 # Creating pipeline branch in frontend. main points to Prod, we run it non-prod on 'feature branches'.
@@ -688,17 +706,27 @@ cd 13.21.roboshop-frontend
 ```
 * Create and Switch to the New Branch (recommended):
 ```
-git checkout -b feature-121
+git checkout -b fk-feature-1
 ```
 
-* Push changes into new branch feature-121
+* Push changes into new branch fk-feature-1
 ```
-git add .;git commit -m "k8s backend shared library"; git push -u origin feature-121;
+git add .;git commit -m "k8s backend shared library"; git push -u origin fk-feature-1;
 ```
 
 ```
 git checkout main
 ```
+
+* Safe delete (recommended)
+```
+git branch -d fk-feature-1
+```
+* Force delete (if not merged)
+```
+git branch -D fk-feature-1
+```
+
 
 ```
 kubens roboshop
@@ -741,5 +769,5 @@ select * from cities;
 
 For Shared Pipelines, we use Multibranch Pipelines, where BRANCH_NAME is available
 
-* Note: For EKS Cluster deployment, We use Jenkins pipeline project, not the multi branch pipeline. for Shared Pipeline project, we use multi branch pipeline, the default variable available BRANCH_NAME available in multi-branch pipeline, not in pipeline project in Jenkins CICD
+* Note: For EKS Cluster deployment, We use Jenkins pipeline project, not the multi branch pipeline. for Shared Pipeline project, we use multi branch pipeline, the default variable available BRANCH_NAME available in multi-branch pipeline, not in pipeline project in Jenkins CICD.
 
